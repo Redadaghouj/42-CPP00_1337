@@ -10,13 +10,13 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-NAME := PhoneBook
+NAME := Job_of_your_dreams
 
 VAL := valgrind --leak-check=full --track-origins=yes
 
-SRC := main.cpp PhoneBook.cpp Contact.cpp
+SRC := Account.cpp tests.cpp
 
-INC := Contact.hpp PhoneBook.hpp
+INC := Account.hpp
 
 OBJ := $(SRC:.cpp=.o)
 

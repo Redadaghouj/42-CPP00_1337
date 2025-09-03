@@ -6,7 +6,7 @@
 /*   By: redadgh <redadgh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:52:27 by redadgh           #+#    #+#             */
-/*   Updated: 2025/09/02 21:18:09 by redadgh          ###   ########.fr       */
+/*   Updated: 2025/09/03 15:34:58 by redadgh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@
 
 void	printInvalidCommand(std::string &cmd)
 {
-	std::cout << "❌ Invalid command: '" << cmd
-				<< "' Please type ADD, SEARCH, or EXIT." << std::endl;
+	std::cout
+	<< "❌ Invalid command: '" << cmd
+	<< "' Please type ADD, SEARCH, or EXIT." << std::endl;
 }
 
 void	clearScreen()
@@ -32,7 +33,7 @@ int main()
 
 	while (!std::cin.eof())
 	{
-		std::cout << "Enter command (ADD, SEARCH, EXIT): ";
+		std::cout << "\n➤ Enter command (ADD, SEARCH, EXIT): ";
 		std::getline(std::cin, cmd);
 		clearScreen();
 		if (cmd == "ADD")

@@ -6,34 +6,33 @@
 /*   By: redadgh <redadgh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:52:27 by redadgh           #+#    #+#             */
-/*   Updated: 2025/09/03 02:03:55 by redadgh          ###   ########.fr       */
+/*   Updated: 2025/09/03 15:35:37 by redadgh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
+#include <cstddef>
 #include <iostream>
 #include <iomanip>
 #include <cctype>
 #include <sstream>
-#include <string>
-#include <sys/types.h>
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
 
 int Contact::_index = -1;
 
 PhoneBook::~PhoneBook()
 {
-	std::cout << std::endl << "Goodbye! 👋" << std::endl << std::endl;
+	std::cout << std::endl << "\tGoodbye! 👋" << std::endl << std::endl;
 }
 
 Field	*initFields()
 {
 	static Field fields[]  = {
-		{"- Enter your first name: ", &Contact::setFirstName},
-		{"- Enter your last name: ", &Contact::setLastName},
-		{"- Enter your nick name: ", &Contact::setNickName},
-		{"- Enter your phone number: ", &Contact::setPhoneNumber},
-		{"- Enter your darkest secret: ", &Contact::setDarkestSecret},
+		{"🔹 Enter your first name\t:  ", &Contact::setFirstName},
+		{"🔹 Enter your last name\t\t:  ", &Contact::setLastName},
+		{"🔹 Enter your nickname\t\t:  ", &Contact::setNickName},
+		{"🔹 Enter your phone number\t:  ", &Contact::setPhoneNumber},
+		{"🔹 Enter your darkest secret\t:  ", &Contact::setDarkestSecret},
 	};
 	return (fields);
 }
@@ -48,7 +47,27 @@ bool	isOnlyWhitespace(std::string& input)
 	return (true);
 }
 
-bool	promptAndSet(const std::string msg, SetterMethod setter, Contact& newContact)
+bool atoi(std::string &str, int &num)
+{
+	std::stringstream ss(str);
+
+	ss >> num;
+	if (ss.fail() || !ss.eof())
+		return (false);
+	return (true);
+}
+
+bool isDigitsOnly(std::string &str)
+{
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (!std::isdigit(static_cast<int>(str[i])))
+			return (false);		
+	}
+	return (true);
+}
+
+bool promptAndSet(const std::string msg, SetterMethod setter, Contact& newContact)
 {
 	std::string input;
 
@@ -58,48 +77,68 @@ bool	promptAndSet(const std::string msg, SetterMethod setter, Contact& newContac
 		std::getline(std::cin, input);
 		if (!input.empty() && !isOnlyWhitespace(input))
 		{
+			if (msg.find("phone") != std::string::npos && !isDigitsOnly(input))
+			{
+				std::cout << "❌ Only digits are allowed. Please try again." << std::endl;
+				continue ;
+			}
 			(newContact.*setter)(input);
 			break ;
 		}
 		else if (std::cin.eof())
 			return (false);
-		std::cout << "❌ This field cannot be empty. Please try again." << std::endl;
+		std::cout << "\n❌ This field cannot be empty. Please try again." << std::endl;
 	}
 	return (true);
 }
 
 void PhoneBook::addContact()
 {
-	Contact newContact;
+	Contact newContact(0);
 	Field *fields;
 
 	fields = initFields();
+	std::cout << std::endl;
 	for (int i = 0; i < NUM_FIELDS; i++)
 	{
 		if (!promptAndSet(fields[i].msg, fields[i].setter, newContact))
 			return ;
 	}
 	_contacts[Contact::getIndex()] = newContact;
-	std::cout << "✅ Contact added successfully.\n" << std::endl;
+	std::cout << "\n✅ Contact added successfully." << std::endl;
 }
 
 void displayHeader()
 {
-	const char HEADER[] = "|     Index|First Name| Last Name|  Nickname|\n";
-	std::cout << SEPARATOR << HEADER << SEPARATOR;
+	std::cout
+	<< SEPARATOR << std::right
+	<< "|" << std::setw(COLUMNS_WIDTH) << "Index"
+	<< "|" << std::setw(COLUMNS_WIDTH) << "First Name"
+	<< "|" << std::setw(COLUMNS_WIDTH) << "Last Name"
+	<< "|" << std::setw(COLUMNS_WIDTH) << "Nickname"
+	<< "|" << std::endl << SEPARATOR;
 }
 
-void PhoneBook::displayContact(int& index)
+std::string truncateWithDot(const std::string &str)
 {
-	const int WIDTH = 10;
+	if (str.length() > COLUMNS_WIDTH)
+	{
+		std::string tmp = str.substr(0, COLUMNS_WIDTH);
+		tmp[COLUMNS_WIDTH - 1] = '.';
+		return (tmp);
+	}
+	return (str);
+}
 
+void PhoneBook::displayContactRow(int index)
+{
 	std::cout
-	<< "|" << std::setw(WIDTH) << std::right << index
-	<< "|" << std::setw(WIDTH) << _contacts[index].getFirstName()
-	<< "|" << std::setw(WIDTH) << _contacts[index].getLastName()
-	<< "|" << std::setw(WIDTH) << _contacts[index].getNickName()
-	<< "|" << std::endl;
-	std::cout << SEPARATOR;
+	<< std::right
+	<< "|" << std::setw(COLUMNS_WIDTH) << index
+	<< "|" << std::setw(COLUMNS_WIDTH) << truncateWithDot(_contacts[index].getFirstName())
+	<< "|" << std::setw(COLUMNS_WIDTH) << truncateWithDot(_contacts[index].getLastName())
+	<< "|" << std::setw(COLUMNS_WIDTH) << truncateWithDot(_contacts[index].getNickName())
+	<< "|" << std::endl << SEPARATOR;
 }
 
 void PhoneBook::displayAllContacts()
@@ -108,19 +147,26 @@ void PhoneBook::displayAllContacts()
 	for (int i = 0; i < PHONEBOOK_CAPACITY; i++)
 	{
 		if (!_contacts[i].getFirstName().empty())
-			displayContact(i);
+			displayContactRow(i);
 	}
-
+	std::cout << std::endl;
 }
 
-bool atoi(std::string &str, int &num)
+void printField(const std::string &label, const std::string &value)
 {
-	std::stringstream ss(str);
+    std::cout
+	<< " 🔹 " << std::left << std::setw(COLUMNS_WIDTH * 2) << label << value
+	<< std::endl;
+}
 
-	if (ss.fail() || !std::cin.eof())
-		return (false);
-	ss >> num;
-	return (true);
+void PhoneBook::displayContactDetails(int index)
+{
+    std::cout << std::endl;
+    printField("First name:", _contacts[index].getFirstName());
+    printField("Last name:", _contacts[index].getLastName());
+    printField("Nickname:", _contacts[index].getNickName());
+    printField("Phone number:", _contacts[index].getPhoneNumber());
+    printField("Darkest secret:", _contacts[index].getDarkestSecret());
 }
 
 void PhoneBook::searchContact()
@@ -129,16 +175,18 @@ void PhoneBook::searchContact()
 	int index;
 
 	displayHeader();
-	displayAllContacts();
-	std::cout << "Enter Index you search for: ";
-	std::getline(std::cin, input);
-	if (!atoi(input, index))
-		std::cout << "not a num\n";
-	else if (index < 0 || index > PHONEBOOK_CAPACITY)
-		std::cout << "not in the range\n";
-	else
+	if (Contact::getIndex() != -1)
 	{
-		displayHeader();
-		displayContact(index);
+		displayAllContacts();
+		std::cout << "➤ Enter Index you search for: ";
+		std::getline(std::cin, input);
+		if (!atoi(input, index))
+			std::cout << "\n❌ Invalid input. Please enter a number." << std::endl;
+		else if (index > Contact::getIndex() || index < 0 || index > PHONEBOOK_CAPACITY)
+			std::cout << "\n❌ Number out of range. Please try again." << std::endl;
+		else
+			displayContactDetails(index);
 	}
+	else
+		std::cout << "\n\t⚠️  CONTACT IS EMPTY." << std::endl;
 }

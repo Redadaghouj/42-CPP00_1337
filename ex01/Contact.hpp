@@ -6,7 +6,7 @@
 /*   By: redadgh <redadgh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 20:44:11 by redadgh           #+#    #+#             */
-/*   Updated: 2025/09/03 00:42:16 by redadgh          ###   ########.fr       */
+/*   Updated: 2025/09/03 14:17:40 by redadgh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class Contact
 
 	public:
 		Contact();
+		Contact(int);
 		void setFirstName(const std::string& firstName);
 		void setLastName(const std::string& lastName);
 		void setNickName(const std::string& nickName);

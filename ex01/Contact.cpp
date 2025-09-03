@@ -6,14 +6,16 @@
 /*   By: redadgh <redadgh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:52:27 by redadgh           #+#    #+#             */
-/*   Updated: 2025/09/03 00:42:29 by redadgh          ###   ########.fr       */
+/*   Updated: 2025/09/03 14:19:32 by redadgh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-Contact::Contact()
+Contact::Contact(){}
+
+Contact::Contact(int)
 {
 	_index++;
 	_index %= PHONEBOOK_CAPACITY;

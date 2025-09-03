@@ -21,9 +21,9 @@ OBJ := $(SRC:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@printf "$(GREEN)  Linking $(NAME)...$(RESET)"
+	@printf "$(GREEN)  Linking $(NAME)...$(RESET)\n"
 	@$(CXX) $(CXXFLAGS) $(OBJ) -o $(NAME)
-	@printf "$(GREEN)  Successfully built $(NAME)$(RESET)"
+	@printf "$(GREEN)  Successfully built $(NAME)$(RESET)\n"
 
 %.o: %.cpp
 	@printf "$(YELLOW)  Compiling $<...$(RESET)\n"
