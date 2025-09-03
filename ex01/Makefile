@@ -10,7 +10,7 @@ CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
 RM := rm -rf
 
-NAME := test
+NAME := PhoneBook
 
 VAL := valgrind --leak-check=full --track-origins=yes
 
