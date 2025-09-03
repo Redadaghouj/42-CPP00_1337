@@ -6,7 +6,7 @@
 /*   By: redadgh <redadgh@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/01 15:52:27 by redadgh           #+#    #+#             */
-/*   Updated: 2025/09/03 15:35:37 by redadgh          ###   ########.fr       */
+/*   Updated: 2025/09/03 15:45:54 by redadgh          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ bool isDigitsOnly(std::string &str)
 {
 	for (size_t i = 0; i < str.length(); i++)
 	{
-		if (!std::isdigit(static_cast<int>(str[i])))
+		if (!std::isdigit(static_cast<unsigned char>(str[i])))
 			return (false);		
 	}
 	return (true);
