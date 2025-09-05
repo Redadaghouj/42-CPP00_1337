@@ -1,15 +1,15 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
-# include "Contact.hpp"
 # include <string>
+# include "Contact.hpp"
 
 const int PHONEBOOK_CAPACITY = 8;
 const int NUM_FIELDS = 5;
 const int COLUMNS_WIDTH = 10;
 const char SEPARATOR[] = "+----------+----------+----------+----------+\n";
 
-typedef	void (Contact::*SetterMethod)(const std::string&);
+typedef	void (Contact::*SetterMethod)(const std::string &);
 
 struct Field
 {

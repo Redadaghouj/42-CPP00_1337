@@ -1,8 +1,8 @@
-#include "PhoneBook.hpp"
 #include <iostream>
 #include <string>
+#include "PhoneBook.hpp"
 
-void	printInvalidCommand(std::string &cmd)
+void	printInvalidCommand(const std::string &cmd)
 {
 	std::cout
 	<< "❌ Invalid command: '" << cmd

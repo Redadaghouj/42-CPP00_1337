@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cctype>
 
-# define DEFAULT_PHRASE "* LOUD AND UNBEARABLE FEEDBACK NOISE *"
+const char DEFAULT_PHRASE[] = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 
 void	printUpperCase(const std::string &str)
 {

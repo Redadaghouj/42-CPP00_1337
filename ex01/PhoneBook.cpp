@@ -1,10 +1,10 @@
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
 #include <cstddef>
 #include <iostream>
 #include <iomanip>
 #include <cctype>
 #include <sstream>
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 int Contact::_index = -1;
 
@@ -25,7 +25,7 @@ Field	*initFields()
 	return (fields);
 }
 
-bool	isOnlyWhitespace(std::string& input)
+bool	isOnlyWhitespace(const std::string &input)
 {
 	for (size_t i = 0; i < input.size(); i++)
 	{
@@ -35,7 +35,7 @@ bool	isOnlyWhitespace(std::string& input)
 	return (true);
 }
 
-bool atoi(std::string &str, int &num)
+bool atoi(const std::string &str, int &num)
 {
 	std::stringstream ss(str);
 
@@ -55,7 +55,7 @@ bool isDigitsOnly(std::string &str)
 	return (true);
 }
 
-bool promptAndSet(const std::string msg, SetterMethod setter, Contact& newContact)
+bool promptAndSet(const std::string &msg, SetterMethod setter, Contact &newContact)
 {
 	std::string input;
 
@@ -98,8 +98,7 @@ void PhoneBook::addContact()
 
 void displayHeader()
 {
-	std::cout
-	<< SEPARATOR << std::right
+	std::cout << SEPARATOR
 	<< "|" << std::setw(COLUMNS_WIDTH) << "Index"
 	<< "|" << std::setw(COLUMNS_WIDTH) << "First Name"
 	<< "|" << std::setw(COLUMNS_WIDTH) << "Last Name"
@@ -121,7 +120,6 @@ std::string truncateWithDot(const std::string &str)
 void PhoneBook::displayContactRow(int index)
 {
 	std::cout
-	<< std::right
 	<< "|" << std::setw(COLUMNS_WIDTH) << index
 	<< "|" << std::setw(COLUMNS_WIDTH) << truncateWithDot(_contacts[index].getFirstName())
 	<< "|" << std::setw(COLUMNS_WIDTH) << truncateWithDot(_contacts[index].getLastName())
