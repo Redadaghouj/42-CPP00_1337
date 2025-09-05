@@ -54,8 +54,6 @@ make
 -Wall -Wextra -Werror -std=c++98
 ```
 
-> Ensures your code adheres to the **C++98 standard**.
-
 ### 🔧 Cleanup Commands
 
 ```bash
