@@ -4,7 +4,7 @@ GREEN   := \033[0;32m
 YELLOW  := \033[0;33m
 RESET   := \033[0m
 
-CXX := g++
+CXX := c++
 
 CXXFLAGS := -Wall -Wextra -Werror -std=c++98
 
