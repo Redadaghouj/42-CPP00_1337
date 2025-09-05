@@ -1,4 +1,3 @@
-````markdown
 # 🖥️ CPP00 - 1337 Project
 
 ### Introduction to C++: Namespaces, Classes, and Basic Concepts
@@ -44,7 +43,6 @@ Navigate to the exercise directory and run:
 
 ```bash
 make
-````
 
 The provided `Makefile` will compile the source files into the required executable.
 
