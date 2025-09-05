@@ -85,6 +85,4 @@ make re         # Full rebuild
 ## 📄 References
 
 For complete project details, see the subject file:
-[en.subject.pdf](https://github.com/Redadaghouj/42-cpp00_1337/subject/en.subject.pdf)
-
-```
+[en.subject.pdf](https://github.com/Redadaghouj/42-CPP00_1337/blob/main/subject/en.subject.pdf)
