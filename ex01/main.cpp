@@ -5,7 +5,7 @@
 void	printInvalidCommand(const std::string &cmd)
 {
 	std::cout
-	<< "❌ Invalid command: '" << cmd
+	<< "\n❌ Invalid command: '" << cmd
 	<< "' Please type ADD, SEARCH, or EXIT." << std::endl;
 }
 

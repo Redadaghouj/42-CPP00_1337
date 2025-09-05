@@ -75,7 +75,7 @@ bool promptAndSet(const std::string &msg, SetterMethod setter, Contact &newConta
 		}
 		else if (std::cin.eof())
 			return (false);
-		std::cout << "\n❌ This field cannot be empty. Please try again." << std::endl;
+		std::cout << "❌ This field cannot be empty. Please try again." << std::endl;
 	}
 	return (true);
 }
@@ -168,9 +168,9 @@ void PhoneBook::searchContact()
 		std::cout << "➤ Enter Index you search for: ";
 		std::getline(std::cin, input);
 		if (!atoi(input, index))
-			std::cout << "\n❌ Invalid input. Please enter a number." << std::endl;
+			std::cout << "❌ Invalid input. Please enter a number." << std::endl;
 		else if (index > Contact::getIndex() || index < 0 || index > PHONEBOOK_CAPACITY)
-			std::cout << "\n❌ Number out of range. Please try again." << std::endl;
+			std::cout << "❌ Number out of range. Please try again." << std::endl;
 		else
 			displayContactDetails(index);
 	}

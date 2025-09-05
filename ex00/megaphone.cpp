@@ -10,7 +10,10 @@ void	printUpperCase(const std::string &str)
 void	transformStrings(char **strings, int count)
 {
 	for (int i = 0; i < count; i++)
+	{
 		printUpperCase(strings[i]);
+		std::cout << (i + 1 < count ? " " : "");
+	}
 	std::cout << std::endl;
 }
 
