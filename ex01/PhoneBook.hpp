@@ -5,7 +5,6 @@
 # include "Contact.hpp"
 
 const int PHONEBOOK_CAPACITY = 8;
-const int NUM_FIELDS = 5;
 const int COLUMNS_WIDTH = 10;
 const char SEPARATOR[] = "+----------+----------+----------+----------+\n";
 

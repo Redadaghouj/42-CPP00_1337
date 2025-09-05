@@ -82,6 +82,7 @@ bool promptAndSet(const std::string &msg, SetterMethod setter, Contact &newConta
 
 void PhoneBook::addContact()
 {
+	const int NUM_FIELDS = 5;
 	Contact newContact(0);
 	Field *fields;
 

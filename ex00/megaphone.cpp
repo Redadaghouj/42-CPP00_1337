@@ -1,8 +1,6 @@
 #include <iostream>
 #include <cctype>
 
-const char DEFAULT_PHRASE[] = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-
 void	printUpperCase(const std::string &str)
 {
 	for (size_t i = 0; i < str.size(); i++)
@@ -18,9 +16,11 @@ void	transformStrings(char **strings, int count)
 
 int main(int argc, char *argv[])
 {
+	const char DEFAULT_OUTPUT[] = "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
+
 	if (argc > 1)
 		transformStrings(argv + 1, argc - 1);
 	else
-		std::cout << DEFAULT_PHRASE << std::endl;
+		std::cout << DEFAULT_OUTPUT << std::endl;
 	return (0);
 }
