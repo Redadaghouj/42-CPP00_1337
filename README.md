@@ -39,14 +39,14 @@ This module is the starting point of your C++ journey. It introduces you to **Ob
 
 ## 🛠️ Installation & Compilation
 
-The provided `Makefile` will compile the source files into the required executable.
-
 Navigate to the exercise directory and run:
-
-### 📌 Compilation Flags
 
 ```bash
 make
+```
+
+### 📌 Compilation Flags
+
 ```bash
 -Wall -Wextra -Werror -std=c++98
 ```
